@@ -16,6 +16,7 @@ public class GameController {
     @Autowired
     private IGameRepo gameRepo;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path="/add")
     public @ResponseBody String createGame (@RequestParam String name){
         Game game = new Game(new Date(System.currentTimeMillis()), name);
@@ -23,11 +24,13 @@ public class GameController {
         return "Saved";
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Game> getAllGames() {
         return gameRepo.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(path="/id")
     public @ResponseBody Optional<Game> getById(@RequestParam int id){
         return gameRepo.findById(id);
