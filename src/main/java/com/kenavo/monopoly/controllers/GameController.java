@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/game")
+@RequestMapping(path="api/game")
 public class GameController {
 
     @Autowired

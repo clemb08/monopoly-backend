@@ -12,7 +12,7 @@ public class PlayerController {
     @Autowired
     private IPlayerRepo playerRepo;
 
-    @PostMapping(path="/add")
+    @PostMapping(path="api/add")
     public @ResponseBody
     String createPlayer (@RequestParam String name,
                          @RequestParam int game,
