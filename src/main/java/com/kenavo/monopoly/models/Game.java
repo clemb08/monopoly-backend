@@ -11,7 +11,7 @@ public class Game {
 
     @Id
     @GeneratedValue
-    private String Id;
+    private int Id;
     @Column(name = "createdAt")
     private Date CreatedAt;
     @Column(name = "name")
@@ -22,11 +22,11 @@ public class Game {
         Name = name;
     }
 
-    public String getId() {
+    public int getId() {
         return Id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         Id = id;
     }
 

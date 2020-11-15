@@ -19,18 +19,19 @@ public class GameController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path="/add")
     public @ResponseBody String createGame (@RequestParam String name){
+        System.out.println(name);
         Game game = new Game(new Date(System.currentTimeMillis()), name);
         gameRepo.save(game);
         return "Saved";
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Game> getAllGames() {
         return gameRepo.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/id")
     public @ResponseBody Optional<Game> getById(@RequestParam int id){
         return gameRepo.findById(id);

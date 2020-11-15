@@ -12,7 +12,7 @@ public class PlayerController {
     @Autowired
     private IPlayerRepo playerRepo;
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path="api/add")
     public @ResponseBody
     String createPlayer (@RequestParam String name,
@@ -24,7 +24,7 @@ public class PlayerController {
         return "Saved";
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping(path="/modify")
     public @ResponseBody String modifyPlayer(@RequestParam int id,
                                              @RequestParam(required = false) String name,
@@ -47,13 +47,13 @@ public class PlayerController {
         return "Modified";
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Player> getAllGames() {
         return playerRepo.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/id")
     public @ResponseBody Player getById(@RequestParam int id) {
         Optional<Player> optionalPlayer = playerRepo.findById(id);
