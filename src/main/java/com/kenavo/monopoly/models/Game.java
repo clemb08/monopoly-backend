@@ -17,6 +17,9 @@ public class Game {
     @Column(name = "name")
     private String Name;
 
+    public Game() {
+    }
+
     public Game(Date createdAt, String name) {
         CreatedAt = createdAt;
         Name = name;
