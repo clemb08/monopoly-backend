@@ -18,6 +18,9 @@ public class Player {
     @Column(name = "account")
     private int Account;
 
+    public Player() {
+    }
+
     public Player(String name, int game, String image, int account) {
         Name = name;
         Game = game;
