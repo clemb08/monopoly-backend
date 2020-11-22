@@ -5,7 +5,10 @@ import com.kenavo.monopoly.repositories.IPlayerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class PlayerController {
 
@@ -49,7 +52,7 @@ public class PlayerController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Player> getAllGames() {
+    public @ResponseBody Iterable<Player> getAllPlayers() {
         return playerRepo.findAll();
     }
 
@@ -57,9 +60,19 @@ public class PlayerController {
     @GetMapping(path="/id")
     public @ResponseBody Player getById(@RequestParam int id) {
         Optional<Player> optionalPlayer = playerRepo.findById(id);
-        if (optionalPlayer != null) {
+        if (optionalPlayer.isPresent()) {
             return optionalPlayer.get();
         }
         return null;
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path="/game/id")
+    public @ResponseBody List<Player> getByGameId(@RequestParam int id) {
+        Iterable<Player> iterablePlayer = playerRepo.findAll();
+        List<Player> playersOfGame = StreamSupport.stream(iterablePlayer.spliterator(), false)
+                .filter(player -> player.getGame() == id)
+                .collect(Collectors.toList());
+        return playersOfGame;
     }
 }
